@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/svg+xml" href="img/faviconh.svg">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Frutas</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+
+    /* Barra fija */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 70px;
+        background: #00431e; /* semitransparente */
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .navbar img {
+        height: 200px; /* Logo o imagen de la barra */
+    
+    display: block; /* evita espacios */
+    }
+
+    /* Contenido principal */
+    .section {
+        width: 100%;
+        margin-top: 100px; /* compensa la barra fija */
+    }
+
+    .section img {
+        width: 100%;
+        display: block;
+    }
+
+
+/* ✅ Solo afecta a la PRIMERA imagen de .section en desktop */
+@media (min-width: 900px) {
+    .section img:first-child {
+        width: 60%;      /* AJUSTA este tamaño como quieras */
+        margin: 0 auto;  /* la centra */
+        display: block;
+    }
+}
+
+@media (min-width: 900px) {
+    .section img:nth-child(2) {
+        width: 80%;      /* AJUSTA el tamaño que quieras */
+        margin: 40px auto 0;  /* opción: añade un margen superior */
+        display: block;
+    }
+}
+
+
+
+    /* Botón de WhatsApp */
+    .whatsapp-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #25d366;
+        color: #fff;
+        padding: 16px 26px;
+        border-radius: 50px;
+        font-size: 20px;
+        text-decoration: none;
+        font-weight: bold;
+        gap:10px;
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        animation: pulse 1.4s infinite ease-in-out;
+        transition: transform 0.2s ease;
+    }
+    .whatsapp-btn:hover {
+    transform: scale(1.08);
+    }
+    .whatsapp-btn img {    
+    width: 34px;
+    height: 34px;
+    display: block; 
+    }
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+/* ✅ Fondo del preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999; /* siempre encima de todo */
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* ✅ Loader centrado */
+.loader svg {
+    display: block;
+}
+
+/* ✅ Ocultar suavemente */
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+/* CONTENEDOR */
+.grid-productos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1100px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+/* TARJETA */
+.card-producto {
+  background: #fff;
+  border-radius: 40px;
+  padding: 32px 24px;
+  text-align: center;
+  border: 4px solid #ffe600;
+  transition: all 0.4s ease;
+}
+
+.card-producto:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 24px 45px rgba(0, 0, 0, 0.15);
+}
+
+/* TÍTULO */
+.card-titulo {
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* IMAGEN */
+.card-imagen {
+  width: 180px;
+  margin: 25px auto;
+  transition: transform 0.4s ease;
+}
+
+.card-producto:hover .card-imagen {
+  transform: scale(1.1) rotate(-2deg);
+}
+
+/* PRECIOS */
+.card-precios {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card-precio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-size {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #000;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.card-valor {
+  font-size: 26px;
+  font-weight: 800;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-productos {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CONTENEDOR */
+.mini-productos {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+}
+
+/* CARD */
+
+
+.mini-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.mini-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #fff;
+  padding: 14px 22px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+
+.mini-emoji {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.mini-info h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.mini-detalle {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.mini-unidad {
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid #000;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.mini-valor {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Barra fija -->
+<div class="navbar">
+    <img src="img/NAV.png" alt="">
+</div>
+
+<!-- Secciones solo con imágenes -->
+<div class="section">
+    <img src="img/img01.jpg" alt="">
+</div>
+<section class="mini-productos" id="miniProductos"></section>
+``
+<!-- Botón flotante de WhatsApp -->
+<a class="whatsapp-btn" 
+   href="https://wa.me/+573108114923?text=¡Hola!%20Estoy%20interesado%20en%20un%20batido." 
+   target="_blank">
+   <img src="img/iconws.png" alt="">
+   ¡Lo quiero!
+</a>
+
+<script>
+    window.addEventListener("load", () => {
+        const loader = document.getElementById("preloader");
+        loader.classList.add("hidden");
+    });
+    
+const productos = [
+  { emoji: '🍍', descripcion: 'PIÑA', unidad: '1LB', valor: 13000 },
+  { emoji: '🥭', descripcion: 'MANGO', unidad: '1LB', valor: 6000 },
+  { emoji: '🍏', descripcion: 'MANZANA VERDE', unidad: '1UND', valor: 2600 },
+  { emoji: '🍎', descripcion: 'MANZANA ROJA', unidad: '1UND', valor: 2300 },
+  { emoji: '🍈', descripcion: 'MELÓN', unidad: '1LB', valor: 6000 },  
+  { emoji: '🍓', descripcion: 'FRESA', unidad: '1LB', valor: 10000 },
+  { emoji: '🥝', descripcion: 'KIWI', unidad: '1LB', valor: 13000 },
+  { emoji: '🥥', descripcion: 'COCO', unidad: '1LB', valor: 10000 },
+  { emoji: '🏉', descripcion: 'PAPAYA', unidad: '1LB', valor: 5000 },
+  { emoji: '🟡', descripcion: 'UCHUVA', unidad: '1LB', valor: 8000 },
+  { emoji: '🍈', descripcion: 'GUAYABA VERDE MANZANA', unidad: '1LB', valor: 5000 },
+  { emoji: '🍈', descripcion: 'LIMÓN', unidad: 'DOCENA', valor: 5000 },
+  { emoji: '🍐', descripcion: 'PERA', unidad: 'UNIDAD', valor: 25000 },
+  { emoji: '🍌', descripcion: 'BANANO', unidad: 'X6', valor: 6000 },
+  { emoji: '🫐', descripcion: 'ARANDANOS', unidad: 'SEGUN DISPONIBILIDAD', valor: 0 },
+  { emoji: '🍇', descripcion: 'UVAS IMPORTADAS', unidad: '1LB', valor: 24000 },
+  { emoji: '🍇', descripcion: 'UVAS NACIONALES', unidad: '1LB', valor: 13000 },
+  { emoji: '🍊', descripcion: 'MANDARINA', unidad: 'X6', valor: 8000 },
+  { emoji: '🍒', descripcion: 'CEREZAS', unidad: 'SEGUN DISPONIBILIDAD', valor: 0 },
+  { emoji: '🍑', descripcion: 'DURAZNO', unidad: '1UND', valor: 2500 },
+
+  
+];
+
+const cont = document.getElementById('miniProductos');
+
+productos.forEach(p => {
+  cont.innerHTML += `
+    <div class="mini-card">
+      <span class="mini-emoji">${p.emoji}</span>
+
+      <div class="mini-info">
+        <h3>${p.descripcion}</h3>
+        <div class="mini-detalle">
+          <span class="mini-unidad">${p.unidad}</span>
+          <span class="mini-valor">$${p.valor.toLocaleString()}</span>
+        </div>
+      </div>
+    </div>
+  `;
+});
+</script>
+
+</body>
+
+<!-- ✅ PRELOADER -->
+<div id="preloader">
+    <div class="loader">
+        <!-- ✅ SVG con animación -->
+        <svg width="80" height="80" viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="20" stroke="#25d366" stroke-width="5" fill="none" stroke-linecap="round">
+                <animateTransform 
+                    attributeName="transform"
+                    type="rotate"
+                    repeatCount="indefinite"
+                    dur="1s"
+                    values="0 25 25;360 25 25">
+                </animateTransform>
+            </circle>
+        </svg>
+    </div>
+
+</html>
